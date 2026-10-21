@@ -2,7 +2,8 @@ name: Construire MUTOPI (APK + EXE)
 
 on:
   push:
-    tags: ['v*']
+    branches: [main]
+    paths: ['config.json', 'android/**', 'windows/**', '.github/workflows/**']
   workflow_dispatch:
 
 permissions:
@@ -56,13 +57,17 @@ jobs:
     needs: [android, windows]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: Version
+        run: echo "V=$(python3 -c "import json;print(json.load(open('config.json'))['version'])")" >> "$GITHUB_ENV"
       - uses: actions/download-artifact@v4
         with: { path: fichiers, merge-multiple: true }
       - name: Publier sur GitHub Releases
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref_type == 'tag' && github.ref_name || format('build-{0}', github.run_number) }}
-          name: MUTOPI Pharmacie ${{ github.ref_type == 'tag' && github.ref_name || format('(build {0})', github.run_number) }}
+          tag_name: v${{ env.V }}
+          name: MUTOPI Pharmacie v${{ env.V }}
+          make_latest: true
           body: |
             **MUTOPI Pharmacie** — une solution Vsanté by Vsoft
             Conception et développement : Ing. Volonté MAYITUKA · +243 994 942 076

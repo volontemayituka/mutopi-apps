@@ -12,5 +12,5 @@ téléchargement des sauvegardes et exports, page « À propos » et adresse du 
 
 ## Publier une nouvelle version
 1. Modifier `version` dans `config.json` et `windows/package.json`.
-2. Créer un tag : `git tag v1.0.1 && git push --tags`.
+2. Envoyer les changements sur `main`.
 3. GitHub construit l'APK et les EXE, puis les publie dans **Releases**.
