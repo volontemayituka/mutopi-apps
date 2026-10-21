@@ -1,7 +1,7 @@
 {
   "name": "mutopi-pharmacie",
   "productName": "MUTOPI Pharmacie",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MUTOPI Pharmacie — une solution Vsanté by Vsoft",
   "author": "Ing. Volonté MAYITUKA <volontemayituka2018@gmail.com>",
   "main": "main.js",

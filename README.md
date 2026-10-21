@@ -2,7 +2,7 @@
 
 Une solution **Vsanté by Vsoft** · Conception et développement : **Ing. Volonté MAYITUKA** (+243 994 942 076)
 
-Ces deux applications ouvrent le site MUTOPI (`https://mutopi.rf.gd/`) en plein écran, avec impression des tickets,
+Ces deux applications ouvrent le site MUTOPI (`https://pharmaciemutopi.rf.gd/`) en plein écran, avec impression des tickets,
 téléchargement des sauvegardes et exports, page « À propos » et adresse du serveur modifiable
 (pour travailler en réseau local, ex. `http://192.168.1.10/mutopi`).
 
