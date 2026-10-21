@@ -1,0 +1,46 @@
+plugins { id 'com.android.application' }
+
+def cfg = new groovy.json.JsonSlurper().parse(rootProject.file('../config.json'))
+
+android {
+    namespace 'cd.vsoft.mutopi'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'cd.vsoft.mutopi'
+        minSdk 24
+        targetSdk 34
+        versionCode((System.getenv('VERSION_CODE') ?: '1') as int)
+        versionName cfg.version
+        buildConfigField 'String', 'SERVEUR', "\"${cfg.serveur}\""
+        buildConfigField 'String', 'AUTEUR', "\"${cfg.auteur}\""
+        buildConfigField 'String', 'SOCIETE', "\"${cfg.societe}\""
+        buildConfigField 'String', 'TELEPHONE', "\"${cfg.telephone}\""
+        buildConfigField 'String', 'EMAIL', "\"${cfg.email}\""
+    }
+    buildFeatures { buildConfig true }
+    signingConfigs {
+        release {
+            def ks = System.getenv('KEYSTORE_FILE')
+            if (ks) {
+                storeFile file(ks)
+                storePassword System.getenv('KEYSTORE_PASSWORD')
+                keyAlias System.getenv('KEY_ALIAS') ?: 'mutopi'
+                keyPassword System.getenv('KEY_PASSWORD') ?: System.getenv('KEYSTORE_PASSWORD')
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig System.getenv('KEYSTORE_FILE') ? signingConfigs.release : signingConfigs.debug
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+}

@@ -1,0 +1,48 @@
+{
+  "name": "mutopi-pharmacie",
+  "productName": "MUTOPI Pharmacie",
+  "version": "1.0.0",
+  "description": "MUTOPI Pharmacie — une solution Vsanté by Vsoft",
+  "author": "Ing. Volonté MAYITUKA <volontemayituka2018@gmail.com>",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win nsis portable --x64"
+  },
+  "devDependencies": {
+    "electron": "31.7.7",
+    "electron-builder": "24.13.3",
+    "resedit": "2.0.3"
+  },
+  "build": {
+    "appId": "cd.vsoft.mutopi",
+    "productName": "MUTOPI Pharmacie",
+    "copyright": "© 2026 Ing. Volonté MAYITUKA · Vsoft",
+    "files": [
+      "main.js",
+      "preload.js",
+      "config.json",
+      "pages/**",
+      "icone.png"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "icon": "build/icon.ico",
+      "artifactName": "MUTOPI-Pharmacie-${version}-${arch}-${target}.${ext}",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "MUTOPI Pharmacie",
+      "artifactName": "MUTOPI-Pharmacie-Installation-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "MUTOPI-Pharmacie-Portable-${version}.${ext}"
+    },
+    "afterPack": "./afterPack.js"
+  }
+}

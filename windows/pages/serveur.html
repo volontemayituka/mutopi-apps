@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Adresse du serveur</title>
+<style>
+  body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;padding:22px;color:#123;background:#fff}
+  h1{font-size:17px;margin:0 0 6px;color:#046834}
+  p{font-size:13px;color:#456;margin:0 0 14px;line-height:1.45}
+  input{width:100%;box-sizing:border-box;padding:10px 12px;font-size:14px;border:1px solid #c9d6cf;border-radius:8px}
+  input:focus{outline:2px solid #04683433;border-color:#046834}
+  .actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+  button{font:inherit;font-size:13px;padding:9px 16px;border-radius:8px;border:1px solid #c9d6cf;background:#fff;cursor:pointer}
+  button.principal{background:#046834;border-color:#046834;color:#fff;font-weight:600}
+</style></head>
+<body>
+  <h1>Adresse du serveur MUTOPI</h1>
+  <p>En ligne : l'adresse du site (ex. https://mutopi.rf.gd).<br>Dans la pharmacie, sans Internet : l'adresse du PC serveur (ex. http://192.168.1.10/mutopi).</p>
+  <input id="url" spellcheck="false" autofocus>
+  <div class="actions">
+    <button id="defaut">Par défaut</button>
+    <button id="ok" class="principal">Enregistrer</button>
+  </div>
+<script>
+  const q = new URLSearchParams(location.search);
+  const champ = document.getElementById('url');
+  champ.value = q.get('actuel') || '';
+  document.getElementById('defaut').onclick = () => { champ.value = q.get('defaut') || ''; champ.focus(); };
+  const ok = () => window.mutopiApp.enregistrerServeur(champ.value);
+  document.getElementById('ok').onclick = ok;
+  champ.addEventListener('keydown', e => { if (e.key === 'Enter') ok(); });
+</script>
+</body></html>

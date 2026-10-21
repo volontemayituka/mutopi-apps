@@ -1,0 +1,10 @@
+node_modules/
+dist/
+build/*
+!build/icon.ico
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+*.jks
+windows/config.json

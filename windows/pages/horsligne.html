@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>MUTOPI — Connexion impossible</title>
+<style>
+  body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;min-height:100vh;display:grid;place-items:center;background:#eef7f0;color:#123}
+  .boite{background:#fff;border-radius:18px;padding:34px 38px;max-width:460px;text-align:center;box-shadow:0 10px 40px #04683422}
+  img{width:96px}
+  h1{font-size:20px;color:#046834;margin:12px 0 8px}
+  p{font-size:14px;line-height:1.5;color:#456;margin:0 0 8px}
+  code{background:#f1f5f3;padding:2px 6px;border-radius:5px;font-size:12px;word-break:break-all}
+  .actions{display:flex;gap:10px;justify-content:center;margin-top:18px}
+  button{font:inherit;font-size:14px;padding:10px 18px;border-radius:10px;border:1px solid #c9d6cf;background:#fff;cursor:pointer}
+  button.principal{background:#046834;border-color:#046834;color:#fff;font-weight:600}
+</style></head>
+<body>
+  <div class="boite">
+    <img src="../icone.png" alt="">
+    <h1>Connexion au serveur impossible</h1>
+    <p>Vérifiez votre connexion Internet, puis réessayez.</p>
+    <p>Serveur : <code id="srv"></code></p>
+    <div class="actions">
+      <button onclick="window.mutopiApp.changerServeur()">Changer l'adresse</button>
+      <button class="principal" onclick="window.mutopiApp.reessayer()">Réessayer</button>
+    </div>
+  </div>
+<script>document.getElementById('srv').textContent = new URLSearchParams(location.search).get('serveur') || '';</script>
+</body></html>
